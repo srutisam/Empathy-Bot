@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapy Assistant</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #7e57c2;
+            --secondary-color: #b39ddb;
+            --light-color: #f5f0ff;
+            --dark-color: #4d2c91;
+            --text-color: #333;
+            --light-text: #fff;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .chat-container {
+            flex: 1;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .chat-box {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 18px;
+            max-width: 80%;
+            position: relative;
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .bot-message {
+            background-color: var(--light-color);
+            align-self: flex-start;
+            margin-right: auto;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .user-message {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            align-self: flex-end;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .timestamp {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 5px;
+            display: block;
+        }
+        
+        .chat-form {
+            display: flex;
+            padding: 15px;
+            background-color: #f7f7f7;
+            border-top: 1px solid #eee;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .chat-input:focus {
+            border-color: var(--primary-color);
+        }
+        
+        .send-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .send-btn:hover {
+            background-color: var(--dark-color);
+        }
+        
+        .send-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .resources {
+            flex: 1;
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            overflow-y: auto;
+        }
+        
+        .resources h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .resource-item {
+            margin-bottom: 15px;
+            border-left: 3px solid var(--secondary-color);
+            padding-left: 15px;
+        }
+        
+        .resource-item h4 {
+            margin-bottom: 5px;
+            color: var(--dark-color);
+        }
+        
+        .resource-item p {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        
+        .resource-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+        
+        .resource-item a:hover {
+            color: var(--dark-color);
+            text-decoration: underline;
+        }
+        
+        .mood-tracker {
+            margin-top: 30px;
+        }
+        
+        .mood-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        
+        .mood-btn {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .mood-btn:hover {
+            background-color: var(--light-color);
+            transform: scale(1.1);
+        }
+        
+        .mood-btn.selected {
+            background-color: var(--secondary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .typing-indicator.active {
+            opacity: 1;
+        }
+        
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            margin: 0 1px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            display: inline-block;
+            animation: typing 1s infinite ease-in-out;
+        }
+        
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typing {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .chat-container {
+                flex-direction: column;
+            }
+            .resources {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Therapy Assistant</h1>
+            <p>A safe space to talk about your feelings and get support</p>
+        </div>
+        
+        <div class="chat-container">
+            <div class="chat-box">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message bot-message">
+                        Hello! I'm your therapy assistant. How are you feeling today?
+                        <span class="timestamp">12:00 PM</span>
+                    </div>
+                    
+                    <div class="typing-indicator" id="typing-indicator">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                
+                <div class="chat-form">
+                    <input type="text" class="chat-input" id="user-input" placeholder="Type your message here..." autofocus>
+                    <button class="send-btn" id="send-btn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="resources">
+                <h3>Helpful Resources</h3>
+                
+                <div class="resource-item">
+                    <h4>Crisis Support</h4>
+                    <p>If you're in crisis or having thoughts of suicide:</p>
+                    <a href="tel:988">988 Suicide & Crisis Lifeline</a>
+                </div>
+                
+                <div class="resource-item">
+                    <h4>Anxiety Techniques</h4>
+                    <p>Simple exercises to manage anxiety:</p>
+                    <a href="#">5-4-3-2-1 Grounding Technique</a>
+                </div>
+                
+                <div class="resource-item">
+                    <h4>Mindfulness Practice</h4>
+                    <p>Free guided meditations:</p>
+                    <a href="#">3-Minute Breathing Space</a>
+                </div>
+                
+                <div class="mood-tracker">
+                    <h3>Daily Mood Check-in</h3>
+                    <p>How are you feeling right now?</p>
+                    <div class="mood-buttons">
+                        <button class="mood-btn" title="Very Bad">😢</button>
+                        <button class="mood-btn" title="Bad">😔</button>
+                        <button class="mood-btn" title="Neutral">😐</button>
+                        <button class="mood-btn" title="Good">🙂</button>
+                        <button class="mood-btn" title="Very Good">😄</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatMessages = document.getElementById('chat-messages');
+            const userInput = document.getElementById('user-input');
+            const sendBtn = document.getElementById('send-btn');
+            const typingIndicator = document.getElementById('typing-indicator');
+            const moodButtons = document.querySelectorAll('.mood-btn');
+            
+            // Add event listeners
+            sendBtn.addEventListener('click', sendMessage);
+            userInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            
+            moodButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove selected class from all buttons
+                    moodButtons.forEach(b => b.classList.remove('selected'));
+                    // Add selected class to clicked button
+                    this.classList.add('selected');
+                    
+                    // Add a bot message acknowledging the mood selection
+                    const mood = this.getAttribute('title');
+                    setTimeout(() => {
+                        addBotMessage(`Thank you for sharing that you're feeling ${mood.toLowerCase()}. Would you like to talk about it?`);
+                    }, 500);
+                });
+            });
+            
+            function sendMessage() {
+                const message = userInput.value.trim();
+                if (message === '') return;
+                
+                // Add user message to chat
+                addUserMessage(message);
+                userInput.value = '';
+                
+                // Show typing indicator
+                typingIndicator.classList.add('active');
+                
+                // Simulate API call
+                setTimeout(() => {
+                    getBotResponse(message);
+                }, 1000);
+            }
+            
+            function addUserMessage(message) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message', 'user-message');
+                messageDiv.innerHTML = `
+                    ${message}
+                    <span class="timestamp">${getCurrentTime()}</span>
+                `;
+                chatMessages.appendChild(messageDiv);
+                scrollToBottom();
+            }
+            
+            function addBotMessage(message) {
+                // Hide typing indicator
+                typingIndicator.classList.remove('active');
+                
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message', 'bot-message');
+                messageDiv.innerHTML = `
+                    ${message}
+                    <span class="timestamp">${getCurrentTime()}</span>
+                `;
+                chatMessages.appendChild(messageDiv);
+                scrollToBottom();
+            }
+            
+            function getBotResponse(message) {
+                // In a real implementation, this would make an API call to your backend
+                // For this demo, we'll use some pre-defined responses
+                
+                // Simplified response logic (would be handled by ML model in production)
+                let response;
+                const lowerMessage = message.toLowerCase();
+                
+                if (lowerMessage.includes('anxious') || lowerMessage.includes('anxiety') || lowerMessage.includes('worried')) {
+                    response = "It sounds like you're experiencing anxiety. Remember that anxiety is a normal human emotion, but it can be overwhelming. Have you tried any breathing exercises when you feel anxious?";
+                } else if (lowerMessage.includes('sad') || lowerMessage.includes('depress') || lowerMessage.includes('unhappy')) {
+                    response = "I'm sorry to hear you're feeling down. Depression and sadness can make everything feel more difficult. What's one small thing that has brought you joy recently?";
+                } else if (lowerMessage.includes('stress') || lowerMessage.includes('overwhelm')) {
+                    response = "Being stressed and overwhelmed is challenging. Sometimes breaking things down into smaller steps can help. What's one small task you could focus on today?";
+                } else if (lowerMessage.includes('thank')) {
+                    response = "You're welcome. Remember that seeking support is a sign of strength, not weakness.";
+                } else if (lowerMessage.includes('bye') || lowerMessage.includes('goodbye')) {
+                    response = "Take care of yourself. Remember I'm here whenever you need to talk. Be gentle with yourself today.";
+                } else {
+                    response = "Thank you for sharing that. How does that make you feel?";
+                }
+                
+                addBotMessage(response);
+            }
+            
+            function getCurrentTime() {
+                const now = new Date();
+                let hours = now.getHours();
+                const minutes = now.getMinutes();
+                const ampm = hours >= 12 ? 'PM' : 'AM';
+                
+                hours = hours % 12;
+                hours = hours ? hours : 12;
+                
+                const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+                
+                return `${hours}:${formattedMinutes} ${ampm}`;
+            }
+            
+            function scrollToBottom() {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        });
+    </script>
+</body>
+</html>

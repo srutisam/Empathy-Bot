@@ -1,0 +1,70 @@
+{
+    "intents": [
+      {
+        "tag": "greeting",
+        "patterns": ["Hi", "Hello", "Hey", "Good day", "How are you", "Is anyone there?", "Hello", "Good morning"],
+        "responses": ["Hello! I'm your therapy assistant. How are you feeling today?", "Hi there! How can I support you today?", "Hello! I'm here to listen. What's on your mind?", "Good to see you. How are you doing emotionally today?"],
+        "context_set": ""
+      },
+      {
+        "tag": "goodbye",
+        "patterns": ["Bye", "See you later", "Goodbye", "I'm leaving", "Have a good day", "Talk to you later"],
+        "responses": ["Take care of yourself. Remember, I'm here whenever you need to talk.", "Goodbye! Remember to be kind to yourself today.", "Take care. I'll be here if you need support later.", "Remember that small steps forward are still progress. Talk to you soon."],
+        "context_set": ""
+      },
+      {
+        "tag": "thanks",
+        "patterns": ["Thanks", "Thank you", "That's helpful", "Thank you for your help", "I appreciate it"],
+        "responses": ["You're welcome! Remember that seeking help is a sign of strength.", "Happy to help. You're doing great by reaching out.", "I'm here for you. Remember to acknowledge your progress.", "You're welcome. Remember that healing isn't linear and that's okay."],
+        "context_set": ""
+      },
+      {
+        "tag": "anxiety",
+        "patterns": ["I feel anxious", "I'm worried all the time", "I can't stop worrying", "I feel on edge", "My anxiety is bad", "I'm having panic attacks", "I'm always stressed"],
+        "responses": ["Anxiety can be really challenging. Have you tried any breathing exercises?", "I understand anxiety can feel overwhelming. What triggers your anxiety usually?", "It's okay to feel anxious. Have you considered journaling when you feel this way?", "Let's work through this anxiety together. Can you tell me more about what you're experiencing?"],
+        "context_set": ""
+      },
+      {
+        "tag": "depression",
+        "patterns": ["I feel sad", "I'm depressed", "Nothing makes me happy", "I feel empty", "I don't enjoy anything anymore", "I feel hopeless", "I'm so tired all the time", "I don't see the point"],
+        "responses": ["I'm sorry you're feeling this way. Depression can make everything feel harder. Have you spoken to a mental health professional?", "It must be difficult feeling this way. What small thing could bring you a moment of peace today?", "I hear you. Depression can be isolating. What has helped you through difficult times before?", "Your feelings are valid. Would you like to explore some coping strategies together?"],
+        "context_set": ""
+      },
+      {
+        "tag": "self_harm",
+        "patterns": ["I want to hurt myself", "I think about hurting myself", "I want to die", "I don't want to live", "I'm thinking of ending it all", "I want to kill myself"],
+        "responses": ["I'm concerned about you. If you're having thoughts of harming yourself, please reach out to a crisis line immediately: 988 or text HOME to 741741 in the US. Would you like me to provide more resources?", "These feelings are serious and you deserve immediate support. Please call 988 or go to your nearest emergency room. You don't have to face this alone.", "I understand things feel overwhelming right now. Please reach out to a crisis counselor at 988 or text HOME to 741741. They can provide immediate support."],
+        "context_set": ""
+      },
+      {
+        "tag": "coping_strategies",
+        "patterns": ["How do I cope", "I need strategies", "What can I do to feel better", "How do I deal with this", "Give me some techniques", "How can I manage my emotions"],
+        "responses": ["Deep breathing is a good place to start. Try breathing in for 4 counts, hold for 2, and exhale for 6. What other strategies have worked for you?", "Grounding techniques can help: Name 5 things you can see, 4 things you can touch, 3 things you can hear, 2 things you can smell, and 1 thing you can taste.", "Regular physical activity, even just a short walk, can help regulate emotions. What kind of movement feels accessible to you?", "Creating a simple routine can provide stability. What small activity could you incorporate daily?"],
+        "context_set": ""
+      },
+      {
+        "tag": "sleep_issues",
+        "patterns": ["I can't sleep", "I have insomnia", "I'm not sleeping well", "I wake up a lot", "I have nightmares", "I'm tired all the time"],
+        "responses": ["Sleep troubles can affect your mental health significantly. Have you tried establishing a consistent bedtime routine?", "Sleep issues are common with stress. Have you considered limiting screen time before bed?", "Some find that gentle stretching or meditation before bed helps. What does your current bedtime routine look like?", "Sleep is vital for mental health. Have you spoken with a doctor about your sleep issues?"],
+        "context_set": ""
+      },
+      {
+        "tag": "relationships",
+        "patterns": ["I'm having trouble with my relationship", "My partner and I are fighting", "I don't know how to fix my relationship", "I'm having family problems", "I don't get along with my parents", "My friend betrayed me"],
+        "responses": ["Relationship challenges can be emotionally draining. Have you been able to communicate your feelings to the other person?", "Conflicts in relationships are normal, though difficult. What would a resolution look like to you?", "Setting boundaries in relationships is important. Have you thought about what boundaries might help in this situation?", "It sounds like you're going through a difficult time with your relationships. What support do you need right now?"],
+        "context_set": ""
+      },
+      {
+        "tag": "gratitude",
+        "patterns": ["How do I practice gratitude", "I want to be more thankful", "Benefits of gratitude", "How to be grateful", "Gratitude exercises"],
+        "responses": ["Gratitude can shift our perspective. Try noting three things you're grateful for each day, no matter how small.", "Even in difficult times, finding small moments of appreciation can help. What's something small that brought you joy recently?", "A gratitude journal can be powerful. Would you consider writing down one thing you appreciate each day?", "Expressing gratitude to others can strengthen connections. Is there someone who's supported you that you could thank?"],
+        "context_set": ""
+      },
+      {
+        "tag": "mindfulness",
+        "patterns": ["How do I practice mindfulness", "What is mindfulness", "How to be present", "Mindfulness techniques", "How to meditate", "Mindfulness exercises"],
+        "responses": ["Mindfulness is about being present without judgment. A simple way to start is focusing on your breath for just one minute.", "Mindfulness can be practiced anywhere. Try fully engaging your senses in a routine activity like drinking tea or walking.", "Being present can reduce anxiety about the future. What activity could you do mindfully today?", "Even just noticing your thoughts without judgment is mindfulness. Would you like to explore a simple mindfulness exercise?"],
+        "context_set": ""
+      }
+    ]
+  }
